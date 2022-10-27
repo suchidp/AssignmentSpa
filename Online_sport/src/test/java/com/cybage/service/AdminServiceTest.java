@@ -1,4 +1,4 @@
-/*package com.cybage.service;
+package com.cybage.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -19,20 +19,19 @@ public class AdminServiceTest {
 	 
 	 
 	 @Test
-	    void testfindPlayerByEmailAndPassword() {
+	    void findAdminByEmailAndPassword() {
 	    	Admin admin=new Admin();
 	    	
 	    	admin.setEmail("suchidp@gmail.com");
 	    	admin.setPassword("123456");
-	    	admin.setAdmin_id(1);
+	    	admin.setAdminId(1);
 	    	
 	        Mockito.doReturn(admin).when(admindao).findAdminByEmailAndPassword("suchidp@gmail.com","123456");
 
-	        assertEquals(1, admindao.findAdminByEmailAndPassword("suchidp@gmail.com","123456").getAdmin_id());
+	        assertEquals(1, admindao.findAdminByEmailAndPassword("suchidp@gmail.com","123456").getAdminId());
 	    }
 	 
 	 
 	 
 	 
 }
-*/

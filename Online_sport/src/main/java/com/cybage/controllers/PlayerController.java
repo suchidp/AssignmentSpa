@@ -25,6 +25,7 @@ import com.cybage.exception.CustomException;
 import com.cybage.models.Batches;
 import com.cybage.models.Player;
 import com.cybage.models.PlayerSubscription;
+import com.cybage.models.Sport;
 import com.cybage.service.AdminService;
 import com.cybage.service.PlayerService;
 import com.cybage.service.PlayerSubscriptionService;
@@ -39,17 +40,18 @@ public class PlayerController {
 	// static Logger logger=LogManager.getLogger(Playercontroller.class);
 	@Autowired
 	PlayerService playerservice;
-
+	@Autowired
+	SportService sportservice;
 	@Autowired
 	PlayerSubscriptionService playersubscriptionservice;
 
-	// Register login pf player
+	// Registration of  player
 
 	@PostMapping("/register")
 	public ResponseEntity<?> savePlayer(@RequestBody Player player) {
 		return new ResponseEntity<>(playerservice.savePlayer(player), HttpStatus.ACCEPTED);
 	}
-
+	// login of player
 	@PostMapping("/login") // taking email and password through payload
 	public Player loginPlayer(@RequestBody @Valid LoginRequest payload) {
 		System.out.println("auth cust " + payload);
@@ -58,11 +60,15 @@ public class PlayerController {
 	}
 
 //Player operation
+	
+	//List of players
 	@GetMapping("")
 	public List<Player> getPlayer() {
 		return playerservice.getPlayer();
 	}
-
+  
+	
+	//Player by Id
 	@GetMapping("/{playerId}")
 	public ResponseEntity<?> getPlayerById(@PathVariable int playerId) throws CustomException {
 		System.out.println("player details " + playerId);
@@ -82,10 +88,25 @@ public class PlayerController {
 	 * 
 	 * }
 	 */
-
+     //Find playersubscription for player 
 	@GetMapping("/{playerId}/playerSubcription")
 	public List<PlayerSubscription> getPlayersubscription() {
 		return playersubscriptionservice.getPlayersubscription();
 	}
+	
+	
+	// List of sport 
+		@GetMapping("/sport")
+		public List<Sport> getSportList() {
+			return sportservice.getSportList();
+		}
+		//Get sport by SportId
+		@GetMapping("/sport/{sportId}")
+		public ResponseEntity<?> getSportById(@PathVariable int sportId) {
+			System.out.println("sport details " + sportId);
+
+			return ResponseEntity.ok(sportservice.getSportById(sportId));
+
+		}
 
 }

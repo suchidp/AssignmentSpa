@@ -47,7 +47,10 @@ public class AdminController {
 	@Autowired
 	ManagerService managerservice;
 
-	/*
+	/* 
+	 * Registation of Admin 
+	 * 
+	 * 
 	 * @PostMapping("/registeradmin") public
 	 * ResponseEntity<?>saveadminDetails(@RequestBody @Valid Admin admin) {
 	 * System.out.println("In save admin");
@@ -56,17 +59,23 @@ public class AdminController {
 	 * ResponseEntity<>(adminservice.saveadminDetails(admin),HttpStatus.CREATED); }
 	 */
 
+	
+	//Login of Admin
 	@PostMapping("/login")
 	public Admin loginAdmin(@RequestBody @Valid LoginRequest payload) {
 		System.out.println("auth cust " + payload);
 		return adminservice.findAdminByEmailAndPassword(payload.getEmail(), payload.getPassword());
 	}
 
+	
+	// List Of Manager
 	@GetMapping("/manager")
 	public List<Manager> getManager() {
 		return managerservice.getall();
 	}
 
+	
+	// Manager By Id
 	@GetMapping("/manager/{managerId}")
 	public ResponseEntity<?> getManagertById(@PathVariable int managerId) {
 		System.out.println("manager details " + managerId);
@@ -75,7 +84,7 @@ public class AdminController {
 
 	}
 
-	/*
+	/*  Admin registration by DTO
 	 * 
 	 * @PostMapping("") public ResponseEntity<?> save(AdminDTO admindto) { Admin
 	 * admin = AdminDTO.toEntity(admindto); admin = adminservice.saveAdmin(admin);
@@ -83,6 +92,8 @@ public class AdminController {
 	 * 
 	 */
 
+	
+	// Create credentials of  Manager by admin
 	@PostMapping("/manager")
 	public ResponseEntity<?> registerManager(@RequestBody @Valid Manager manager) {
 		System.out.println("In save manager");
@@ -90,18 +101,26 @@ public class AdminController {
 		return new ResponseEntity<>(managerservice.saveManager(manager), HttpStatus.CREATED);
 	}
 
+	
+	// List of sport 
 	@GetMapping("/sport")
 	public List<Sport> getSportList() {
 		return sportservice.getSportList();
 	}
 
+	
+	// Add Sport by Admin 
 	@PostMapping("/sport")
 	public ResponseEntity<?> saveSportDetails(@RequestBody @Valid Sport sport) {
 		System.out.println("sport added");
 
 		return new ResponseEntity<>(sportservice.saveSport(sport), HttpStatus.CREATED);
 	}
-
+    
+	
+	
+	
+	//Get sport by SportId
 	@GetMapping("/sport/{sportId}")
 	public ResponseEntity<?> getSportDetailsById(@PathVariable int sportId) {
 		System.out.println("sport details " + sportId);
@@ -110,12 +129,21 @@ public class AdminController {
 
 	}
 
+	
+	
+	//Delete Sport by ID
 	@DeleteMapping("/sport/{sportId}")
 	public ResponseEntity<String> deleteSportDetails(@PathVariable int sportId) {
 		System.out.println("delete sportdetails " + sportId);
 
 		return ResponseEntity.ok(sportservice.deleteSportDetails(sportId));
 	}
+	
+	
+	
+	
+	
+	//Edit Sport
 
 	@PutMapping("/sport/{id}")
 	public ResponseEntity<?> updateSportDetails(@RequestBody Sport detachedsport, @PathVariable("id") int sportId)
@@ -127,6 +155,8 @@ public class AdminController {
 		throw new CustomException("Sport not found");
 	}
 
+	
+	//	Logout Admin
 	@PostMapping("/logout")
 	public ResponseEntity<?> adminLogout(@RequestBody Admin admin) throws CustomException {
 		// userService.findByUserEmail(email);

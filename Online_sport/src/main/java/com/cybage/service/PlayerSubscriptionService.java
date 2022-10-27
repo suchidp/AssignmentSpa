@@ -17,12 +17,17 @@ public class PlayerSubscriptionService {
 	@Autowired
 	PlayerSubscriptionDao playersubscriptionDao;
 
+	
+	
+	//Select subscription
 	public String selectSubscription(PlayerSubscription playersubscription) {
 		PlayerSubscription selectSubscription = playersubscriptionDao.save(playersubscription);
 		return selectSubscription.getPlayerSubscriptionId() + ",sucessfully added with id : "
 				+ selectSubscription.getPlayerSubscriptionId();
 	}
 
+	
+	//List of subscription
 	public PlayerSubscription getSubscriptionById(int playerSubscriptionId) {
 
 		return playersubscriptionDao.findById(playerSubscriptionId).get();
@@ -48,28 +53,34 @@ public class PlayerSubscriptionService {
 		// TODO Auto-generated method stub
 		return playersubscriptionDao.findByPlayer(playerId);
 	}
-
+	
+	
+	//List of Pending subscription for particular manager
 	public List<PlayerSubscription> findPendingPlayersubscriptionByManagerId(int managerId) {
 		// TODO Auto-generated method stub
 		return playersubscriptionDao.findPendingPlayerSubscriptionByManagerId(managerId);
 	}
 
-	;
+	 //List of New subscription for particular manager
 
 	public List<PlayerSubscription> findNewPlayersubscriptionByManagerId(int managerId) {
 		// TODO Auto-generated method stub
 		return playersubscriptionDao.findNewPlayerSubscriptionByManagerId(managerId);
 	}
-
+	 //List of Complete subscription for particular manager
 	public List<PlayerSubscription> findCompletedPlayersubscriptionByManagerId(int managerId) {
 		// TODO Auto-generated method stub
 		return playersubscriptionDao.findCompletedPlayerSubscriptionByManagerId(managerId);
 	}
-
+	 //List of Renew subscription for particular manager
 	public List<PlayerSubscription> findRenewPlayersubscriptionByManagerId(int managerId) {
 		// TODO Auto-generated method stub
 		return playersubscriptionDao.findRenewPlayerSubscriptionByManagerId(managerId);
 	}
+	
+	
+	
+	 //Accept subscription  request for particular playerSubscriptionId
 
 	public Object acceptPlayersubscription(int playerSubscriptionId) {
 		// TODO Auto-generated method stub
@@ -88,6 +99,10 @@ public class PlayerSubscriptionService {
 		}
 	}
 
+	
+	
+	 //Reject subscription  request for particular playerSubscriptionId
+
 	public Object rejectPlayersubscription(int playerSubscriptionId) {
 		PlayerSubscription playersubscription = playersubscriptionDao.findById(playerSubscriptionId).get();
 
@@ -99,6 +114,10 @@ public class PlayerSubscriptionService {
 			return "Playersubscription already Aceepeted ";
 		}
 	}
+
+	
+	
+	 //Complete subscription  request for particular playerSubscriptionId
 
 	public Object completePlayersubscription(int playerSubscriptionId) {
 		// TODO Auto-generated method stub

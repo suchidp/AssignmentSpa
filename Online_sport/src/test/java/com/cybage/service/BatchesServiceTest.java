@@ -1,4 +1,4 @@
-/*package com.cybage.service;
+package com.cybage.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

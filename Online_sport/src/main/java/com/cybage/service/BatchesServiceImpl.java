@@ -14,6 +14,9 @@ public class BatchesServiceImpl implements BatchesService {
 	@Autowired
 	BatchesDao batchesdao;
 
+	
+	
+	//Add batches and create subscription
 	public void addToBatches(Batches batches) {
 		int sportId = batches.getSport_batch().getSportId();
 		int managerId = batches.getManager_batch().getManagerId();
@@ -25,11 +28,17 @@ public class BatchesServiceImpl implements BatchesService {
 		batchesdao.save(batches);
 	}
 
+	
+	
+	//Find batch by batchId
 	public Batches getBatchesById(int batchId) {
 
 		return batchesdao.findById(batchId).get();
 	}
-
+	
+	
+	
+  //Update batch details
 	public Batches updateBatchesDetails(Batches batches, int batchId) {
 
 		Batches batches1 = batchesdao.getBatchesById(batchId);
@@ -39,17 +48,23 @@ public class BatchesServiceImpl implements BatchesService {
 		return batchDetails;
 	}
 
+	
+	//Delete batch by batchId
 	public void deleteBatches(int batchId) {
 
 		batchesdao.deleteById(batchId);
 
 	}
 
+	
+	//List of batches
 	public List<Batches> getBatches() {
 		// TODO Auto-generated method stub
 		return batchesdao.findAll();
 	}
 
+	
+	//List of batches by managerId
 	public List<Batches> getBatchesByManager(int manager_id) {
 		// TODO Auto-generated method stub
 		return batchesdao.findBymanagerId(manager_id);

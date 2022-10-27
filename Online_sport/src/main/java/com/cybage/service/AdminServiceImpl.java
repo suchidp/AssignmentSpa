@@ -12,10 +12,14 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	AdminDao admindao;
 
+	
+	//Login of Admin
 	public Admin findAdminByEmailAndPassword(String email, String password) {
 		return admindao.findAdminByEmailAndPassword(email, password);
 	}
 
+	
+	// Registation of Admin 
 	@Override
 	public Admin saveAdmin(Admin admin) {
 		// TODO Auto-generated method stub
