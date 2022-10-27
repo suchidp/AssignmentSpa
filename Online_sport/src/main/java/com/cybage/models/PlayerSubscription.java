@@ -28,32 +28,31 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@Table(name="playersubscription")
+@Table(name = "playersubscription")
 @Component
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "playerSubscriptionId")
 public class PlayerSubscription {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-     private int playerSubscriptionId;
-	
-	private EnrollmentStatus enrollmentstatus ;
-	
+	private int playerSubscriptionId;
+
+	private EnrollmentStatus enrollmentstatus;
+
 	@JsonIgnore
 	@OneToOne(mappedBy = "playersubscription")
-    private Batches batches;
+	private Batches batches;
 
-	
-	 @ManyToOne
-	  @JsonBackReference(value="playersubscription")
-	   @JoinColumn(name = "player_id")
-	   private Player play;
-	     
-	     @ManyToOne
-	     @JsonBackReference(value="playersubscriptions")
-	      @JoinColumn(name = "manager_id")
-	      private Manager subscription;
-		 
+	@ManyToOne
+	@JsonBackReference(value = "playersubscription")
+	@JoinColumn(name = "player_id")
+	private Player play;
+
+	@ManyToOne
+	@JsonBackReference(value = "playersubscriptions")
+	@JoinColumn(name = "manager_id")
+	private Manager subscription;
+
 	public PlayerSubscription() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -115,9 +114,4 @@ public class PlayerSubscription {
 				+ enrollmentstatus + ", batches=" + batches + ", play=" + play + ", subscription=" + subscription + "]";
 	}
 
-	
-	
-	
-	
-		  
 }

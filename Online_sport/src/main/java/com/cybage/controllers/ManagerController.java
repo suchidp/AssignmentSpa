@@ -41,10 +41,9 @@ import com.cybage.service.SportService;
 @RestController
 @EnableAutoConfiguration
 @RequestMapping("/manager")
-@CrossOrigin(origins = "*")
-@Transactional
+
 public class ManagerController {
-	static Logger logger=LogManager.getLogger(Managercontrollers.class);
+	//static Logger logger=LogManager.getLogger(Managercontrollers.class);
 	@Autowired
 	BatchesServiceImpl batchesservice;
 	@Autowired
@@ -70,7 +69,7 @@ public class ManagerController {
 @PostMapping("/logout")
 public ResponseEntity<?> managerLogout(@RequestBody Manager manager) throws CustomException{
 	
-	logger.info(manager.getEmail())+" Logged out successfully");
+	//logger.info(manager.getEmail())+" Logged out successfully");
 	return new ResponseEntity<>("Manager Logged Out Successfully",HttpStatus.OK);
 }
 
@@ -82,7 +81,7 @@ public ResponseEntity<?> managerLogout(@RequestBody Manager manager) throws Cust
 	public ResponseEntity<String> addToBatches(@RequestBody Batches batches) {
 		
 		batchesservice.addToBatches(batches);
-		logger.info("batch Added");
+		//logger.info("batch Added");
 		return new ResponseEntity<String>("Carbatch Added successfully", HttpStatus.CREATED);
 	}
 		@GetMapping("/batch")

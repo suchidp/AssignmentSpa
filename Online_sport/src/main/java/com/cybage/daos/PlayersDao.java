@@ -12,24 +12,19 @@ import com.cybage.models.Admin;
 import com.cybage.models.Batches;
 import com.cybage.models.Player;
 
-
-
-public interface PlayersDao extends JpaRepository<Player, Integer>{
-	@Transactional
-	@Modifying
+public interface PlayersDao extends JpaRepository<Player, Integer> {
+	
 	@Query("select a from Player a where a.playerId=:playerId")
 	public Player getPlayerById(int playerId);
-	//public Player savePlayer (Player player);
-	
+	// public Player savePlayer (Player player);
+
 	@Query("select a from Player a where a.email =:email and a.password =:password")
 	public Player findPlayerByEmailAndPassword(String email, String password);
-	
+
 	@Query("select u from Player u")
 	List<Player> getPlayer();
-	//public void deletePlayer(int playerId);
+	// public void deletePlayer(int playerId);
 
-	
-	
-	//public User findByPlayer(int playerId);
-	
+	// public User findByPlayer(int playerId);
+
 }

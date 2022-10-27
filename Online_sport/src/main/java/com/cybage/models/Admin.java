@@ -1,4 +1,4 @@
- package com.cybage.models;
+package com.cybage.models;
 
 import java.util.List;
 
@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
 
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -22,12 +21,12 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@Table(name="admin")
+@Table(name = "admin")
 @Component
 
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "adminId")
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Admin {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,21 +37,19 @@ public class Admin {
 	@Column(length = 20, nullable = false)
 	private String password;
 	@Column(nullable = false)
-	@Email(message= "Please enter the valid email address")
+	@Email(message = "Please enter the valid email address")
 	private String email;
-	
-	
-	@OneToMany(mappedBy ="ad")
-	 @JsonManagedReference(value="manager")
+
+	@OneToMany(mappedBy = "ad")
+	@JsonManagedReference(value = "manager")
 	@JsonIgnore
-	    private List<Manager> manager;
-	
-	
-	@OneToMany(mappedBy ="adm")
-	 @JsonManagedReference(value="sport")
+	private List<Manager> manager;
+
+	@OneToMany(mappedBy = "adm")
+	@JsonManagedReference(value = "sport")
 	@JsonIgnore
-	    private List<Sport> sport;
-	    
+	private List<Sport> sport;
+
 	public Admin() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -115,13 +112,4 @@ public class Admin {
 				+ ", sport=" + sport + "]";
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-		
 }

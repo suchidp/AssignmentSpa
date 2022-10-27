@@ -14,19 +14,22 @@ import com.cybage.models.Player;
 public class PlayerService {
 	@Autowired
 	PlayersDao playerDao;
-	
-	public Player savePlayer (Player player) {
+
+	public Player savePlayer(Player player) {
 		return playerDao.save(player);
 	}
+
 	public Player findPlayerByEmailAndPassword(String email, String password) {
 		return playerDao.findPlayerByEmailAndPassword(email, password);
 	}
+
 	public List<Player> getPlayer() {
 		// TODO Auto-generated method stub
 		return playerDao.findAll();
 	}
-public Player getPlayerById(int playerId) {
-		
+
+	public Player getPlayerById(int playerId) {
+
 		return playerDao.findById(playerId).get();
 	}
 }

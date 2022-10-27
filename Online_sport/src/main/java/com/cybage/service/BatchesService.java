@@ -8,5 +8,6 @@ public interface BatchesService {
 	void addToBatches(Batches batches);
 
 	List<Batches> getBatchesItems(int managerId);
+
 	void updateBatchName(Batches batches);
 }

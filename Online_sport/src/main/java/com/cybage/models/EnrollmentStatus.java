@@ -1,5 +1,5 @@
 package com.cybage.models;
 
 public enum EnrollmentStatus {
-     APPLIED,INPROGRESS,PENDING,APPROVE,REJECT,RENEW
+	APPLIED, INPROGRESS, PENDING, APPROVE, REJECT, RENEW
 }

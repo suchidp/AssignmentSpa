@@ -33,135 +33,104 @@ import com.cybage.service.AdminServiceImpl;
 import com.cybage.service.ManagerService;
 import com.cybage.service.SportService;
 
-
 @RestController
 @EnableAutoConfiguration
 @RequestMapping("/admin")
 
-@Transactional
+
 public class AdminController {
-	static Logger logger=LogManager.getLogger(Admincontroller.class);
+	//static Logger logger = LogManager.getLogger(Admincontroller.class);
 	@Autowired
 	AdminServiceImpl adminservice;
 	@Autowired
 	SportService sportservice;
 	@Autowired
 	ManagerService managerservice;
-	
+
 	/*
-	@PostMapping("/registeradmin")
-	public ResponseEntity<?>saveadminDetails(@RequestBody @Valid Admin admin)
-	{
-		System.out.println("In save admin");
-		
-		return new ResponseEntity<>(adminservice.saveadminDetails(admin),HttpStatus.CREATED);
-	}*/
-	
-	@PostMapping("/login") 
-	public Admin loginAdmin(@RequestBody @Valid LoginRequest payload){
-		System.out.println("auth cust "+payload);
+	 * @PostMapping("/registeradmin") public
+	 * ResponseEntity<?>saveadminDetails(@RequestBody @Valid Admin admin) {
+	 * System.out.println("In save admin");
+	 * 
+	 * return new
+	 * ResponseEntity<>(adminservice.saveadminDetails(admin),HttpStatus.CREATED); }
+	 */
+
+	@PostMapping("/login")
+	public Admin loginAdmin(@RequestBody @Valid LoginRequest payload) {
+		System.out.println("auth cust " + payload);
 		return adminservice.findAdminByEmailAndPassword(payload.getEmail(), payload.getPassword());
 	}
-	
-	
-	
+
 	@GetMapping("/manager")
-	public List<Manager> getManager()
-	{
+	public List<Manager> getManager() {
 		return managerservice.getall();
 	}
-	
-	
-	
+
 	@GetMapping("/manager/{managerId}")
-	public ResponseEntity<?> getManagertById(@PathVariable int managerId){
-		System.out.println("manager details "+ managerId);
-		
+	public ResponseEntity<?> getManagertById(@PathVariable int managerId) {
+		System.out.println("manager details " + managerId);
 
 		return ResponseEntity.ok(managerservice.getManagertById(managerId));
-		
+
 	}
-	
+
 	/*
-	
-	@PostMapping("")
-	public ResponseEntity<?> save(AdminDTO admindto) {
-		Admin admin = AdminDTO.toEntity(admindto);
-		admin = adminservice.saveAdmin(admin);
-		return Response.success(admin);
-	}
-	
-	*/
-	
-	
-	
-	
-	
+	 * 
+	 * @PostMapping("") public ResponseEntity<?> save(AdminDTO admindto) { Admin
+	 * admin = AdminDTO.toEntity(admindto); admin = adminservice.saveAdmin(admin);
+	 * return Response.success(admin); }
+	 * 
+	 */
+
 	@PostMapping("/manager")
-	public ResponseEntity<?>registerManager(@RequestBody @Valid Manager manager)
-	{
+	public ResponseEntity<?> registerManager(@RequestBody @Valid Manager manager) {
 		System.out.println("In save manager");
-		
-		return new ResponseEntity<>(managerservice.saveManager(manager),HttpStatus.CREATED);
+
+		return new ResponseEntity<>(managerservice.saveManager(manager), HttpStatus.CREATED);
 	}
-	
-	
-		
-		@GetMapping("/sport")
-		public List<Sport> getSportList()
-		{
-			return sportservice.getSportList();
-		}
-		@PostMapping("/sport")
-		public ResponseEntity<?>saveSportDetails(@RequestBody @Valid Sport sport)
-		{
-			System.out.println("sport added");
-			
-			return new ResponseEntity<>(sportservice.saveSport(sport),HttpStatus.CREATED);
-		}
-		
-		@GetMapping("/sport/{sportId}")
-		public ResponseEntity<?> getSportDetailsById(@PathVariable int sportId){
-			System.out.println("sport details "+ sportId);
-			
 
-			return ResponseEntity.ok(sportservice.getSportById(sportId));
-			
-		}
-		
-		@DeleteMapping("/sport/{sportId}")
-		public ResponseEntity<String> deleteSportDetails(@PathVariable int sportId){
-			System.out.println("delete sportdetails "+sportId);
-		
+	@GetMapping("/sport")
+	public List<Sport> getSportList() {
+		return sportservice.getSportList();
+	}
 
-			return ResponseEntity.ok(sportservice.deleteSportDetails(sportId));
-		}
-		
-		@PutMapping("/sport/{id}")
-		public ResponseEntity<?> updateSportDetails(@RequestBody Sport detachedsport,@PathVariable("id") int sportId)throws CustomException{
-			
+	@PostMapping("/sport")
+	public ResponseEntity<?> saveSportDetails(@RequestBody @Valid Sport sport) {
+		System.out.println("sport added");
 
-			
-			
-			
-			if(updateSportDetails(detachedsport, sportId)!=null) {
-				return ResponseEntity.ok(sportservice.updateSportDetails(detachedsport, sportId));
-				}
-				throw new CustomException("Sport not found");
-			}
-		
-		
-		
-		
-		@PostMapping("/logout")
-		public ResponseEntity<?> adminLogout(@RequestBody Admin admin) throws CustomException{
-			//userService.findByUserEmail(email);
-			//logger.info(admin.getAdmin_id()+" Logged out successfully");
-			return new ResponseEntity<>("Admin Logged Out Successfully",HttpStatus.OK);
-		}
-		}
-		
+		return new ResponseEntity<>(sportservice.saveSport(sport), HttpStatus.CREATED);
+	}
 
-		
-	
+	@GetMapping("/sport/{sportId}")
+	public ResponseEntity<?> getSportDetailsById(@PathVariable int sportId) {
+		System.out.println("sport details " + sportId);
 
+		return ResponseEntity.ok(sportservice.getSportById(sportId));
+
+	}
+
+	@DeleteMapping("/sport/{sportId}")
+	public ResponseEntity<String> deleteSportDetails(@PathVariable int sportId) {
+		System.out.println("delete sportdetails " + sportId);
+
+		return ResponseEntity.ok(sportservice.deleteSportDetails(sportId));
+	}
+
+	@PutMapping("/sport/{id}")
+	public ResponseEntity<?> updateSportDetails(@RequestBody Sport detachedsport, @PathVariable("id") int sportId)
+			throws CustomException {
+
+		if (updateSportDetails(detachedsport, sportId) != null) {
+			return ResponseEntity.ok(sportservice.updateSportDetails(detachedsport, sportId));
+		}
+		throw new CustomException("Sport not found");
+	}
+
+	@PostMapping("/logout")
+	public ResponseEntity<?> adminLogout(@RequestBody Admin admin) throws CustomException {
+		// userService.findByUserEmail(email);
+		// logger.info(admin.getAdmin_id()+" Logged out successfully");
+		return new ResponseEntity<>("Admin Logged Out Successfully", HttpStatus.OK);
+	}
+}

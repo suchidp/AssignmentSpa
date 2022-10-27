@@ -12,17 +12,10 @@ import com.cybage.models.Admin;
 
 import com.cybage.models.Sport;
 
-public interface AdminDao extends JpaRepository<Admin, Integer>{
-	@Transactional
-	
-	
-	
+public interface AdminDao extends JpaRepository<Admin, Integer> {
+
+
 	@Query("select a from Admin a where a.email =:email and a.password =:password")
 	public Admin findAdminByEmailAndPassword(String email, String password);
-	
-	
-	
-	
-	
-	
+
 }
