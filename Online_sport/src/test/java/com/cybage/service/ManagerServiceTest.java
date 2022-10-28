@@ -1,4 +1,4 @@
-/*package com.cybage.service;
+package com.cybage.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -39,7 +39,7 @@ public class ManagerServiceTest {
 	    @Test
 	    void testgetManagertById() {
 	    	 Manager manager=new Manager();
-	    	manager.setManager_id(1);
+	    	manager.setManagerId(1);
 	       manager.setEmail("suchidp@gmail.com");
 	        Optional <Manager> managers=Optional.of(manager);
 	        Mockito.doReturn(manager).when(managerdao).getManagerById(1);
@@ -55,10 +55,10 @@ public class ManagerServiceTest {
  	
     manager.setEmail("suchidp@gmail.com");
     manager.setPassword("suchid");
-     manager.setManager_id(1);
+     manager.setManagerId(1);
      Mockito.doReturn(manager).when(managerdao).findManagerByEmailAndPassword("suchidp@gmail.com","suchid");
 
-     assertEquals(1, managerdao.findManagerByEmailAndPassword("suchidp@gmail.com","suchid").getManager_id());
+     assertEquals(1, managerdao.findManagerByEmailAndPassword("suchidp@gmail.com","suchid").getManagerId());
  }
 
  
@@ -76,4 +76,4 @@ public class ManagerServiceTest {
 
 
 
-}*/
+}

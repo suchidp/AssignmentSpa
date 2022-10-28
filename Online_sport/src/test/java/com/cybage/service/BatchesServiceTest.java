@@ -27,20 +27,20 @@ public class BatchesServiceTest {
 	 @Test
 	    void testaddBatches() {
 	    	Batches batch=new Batches();
-	       batch.setBatch_name("Morning");
+	       batch.setBatchName("Morning");
 	        Mockito.doReturn(batch).when(batchdao).save(batch);
 
-	        assertEquals("Morning", batchdao.save(batch).getBatch_name());
+	        assertEquals("Morning", batchdao.save(batch).getBatchName());
 	    }
 	 @Test
 	    void testgetBatchesById() {
 		 Batches batch=new Batches();
-		 batch.setBatch_id(1);;
-		 batch.setBatch_name("eveining");
+		 batch.setBatchId(1);;
+		 batch.setBatchName("eveining");
 	        Optional<Batches> batch1=Optional.of(batch);
 	        Mockito.doReturn(batch).when(batchdao).getBatchesById(1);
 
-	        assertEquals("eveining",batchdao.getBatchesById(1).getBatch_name());
+	        assertEquals("eveining",batchdao.getBatchesById(1).getBatchName());
 	    }
 	
 	 
@@ -63,4 +63,3 @@ public class BatchesServiceTest {
 	        assertEquals(1, batchdao.findAll().size());
 	    } 
 }
-*/

@@ -1,4 +1,4 @@
-/*package com.cybage.service;
+package com.cybage.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,31 +23,31 @@ public class PlayerSubscriptionServiceTest {
 	    void getSubscriptionById() {
 		 PlayerSubscription playersub=new PlayerSubscription();
 	        Optional<PlayerSubscription> playersub1=Optional.of(playersub);
-	        playersub.setPlayersubscription_id(21);
+	        playersub.setPlayerSubscriptionId(21);
 
 	        Mockito.when(playersubscription.findById(21)).thenReturn(playersub1);
 
-	        assertEquals(21,playersubscription.findById(21).get().getPlayersubscription_id());
+	        assertEquals(21,playersubscription.findById(21).get().getPlayerSubscriptionId());
 	    }
 	 
 	
 	    @Test
 	    void testselectSubscription() {
 	    	PlayerSubscription playersub=new PlayerSubscription();
-	    	playersub.setPlayersubscription_id(11);
+	    	playersub.setPlayerSubscriptionId(11);
 
 	        Mockito.doReturn( playersub).when(playersubscription).save(playersub);
 
-	        assertEquals(11,playersubscription.save(playersub).getPlayersubscription_id());
+	        assertEquals(11,playersubscription.save(playersub).getPlayerSubscriptionId());
 	    }
-	 /*  
-	    
+}
+	   /* 
 	    @Test
 	    void testgetPlayersubscription() {
-	    	List<Playersubscription> playersubscriptionList=new ArrayList<>();
-	    	Playersubscription playersubscription=new Playersubscription();
-	    	Playersubscription playersubscription1=new Playersubscription();
-	    	Playersubscription playersubscription2=new Playersubscription();
+	    	List<PlayerSubscription> playersubscriptionList=new ArrayList<>();
+	    	PlayerSubscription playersubscription=new PlayerSubscription();
+	    	PlayerSubscription playersubscription1=new PlayerSubscription();
+	    	PlayerSubscription playersubscription2=new PlayerSubscription();
 
 	    	playersubscriptionList.add(playersubscription);
 	    	playersubscriptionList.add(playersubscription1);

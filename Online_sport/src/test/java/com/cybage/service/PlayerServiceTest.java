@@ -1,4 +1,4 @@
-/*package com.cybage.service;
+package com.cybage.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -42,7 +42,7 @@ public class PlayerServiceTest {
 	    @Test
 	    void testgetPlayerById() {
 	    	Player player=new Player();
-	    	player.setPlayer_id(11);
+	    	player.setPlayerId(11);
 	        player.setEmail("sbparbat@gmail.com");
 	        Optional<Player> player1=Optional.of(player);
 	        Mockito.doReturn(player).when(playerd).getPlayerById(11);
@@ -93,4 +93,4 @@ public class PlayerServiceTest {
    
 
   
-}*/
+}
